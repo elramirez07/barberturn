@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\{
     ProfileController,
-    AppointmentController
-    };
+    AppointmentController,
+    BarberController,
+    ServiceController
+};
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -28,5 +30,6 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('appointments', AppointmentController::class);
-
+Route::resource('barbers', BarberController::class);
+Route::resource('services', ServiceController::class);
 require __DIR__.'/auth.php';

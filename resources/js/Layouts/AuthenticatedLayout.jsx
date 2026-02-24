@@ -18,9 +18,11 @@ export default function AuthenticatedLayout({ header, children }) {
                     <div className="flex h-16 justify-between">
                         <div className="flex">
                             <div className="flex shrink-0 items-center">
-                                <Link href="/">
+                                {/* <Link href="/">
                                     <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
-                                </Link>
+                                </Link> */}
+                                <h2 className="text-xl font-bold text-white">BarberTurn 💈</h2>
+
                             </div>
 
                             <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
@@ -29,6 +31,24 @@ export default function AuthenticatedLayout({ header, children }) {
                                     active={route().current('dashboard')}
                                 >
                                     Dashboard
+                                </NavLink>
+                                <NavLink
+                                    href={route('barbers.index')}
+                                    active={route().current('barbers.*')}
+                                >
+                                    Barberos
+                                </NavLink>
+                                <NavLink
+                                    href={route('services.index')}
+                                    active={route().current('services.*')}
+                                >
+                                    Servicios
+                                </NavLink>
+                                <NavLink
+                                    href={route('appointments.index')}
+                                    active={route().current('appointments.*')}
+                                >
+                                    Agenda
                                 </NavLink>
                             </div>
                         </div>
@@ -134,6 +154,24 @@ export default function AuthenticatedLayout({ header, children }) {
                         >
                             Dashboard
                         </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            href={route('barbers.index')}
+                            active={route().current('barbers.*')}
+                        >
+                            Barberos
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            href={route('services.index')}
+                                    active={route().current('services.*')}
+                        >
+                            Servicios
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            href={route('appointments.index')}
+                            active={route().current('appointments.*')}
+                        >
+                            Agenda
+                        </ResponsiveNavLink>
                     </div>
 
                     <div className="border-t border-gray-200 pb-1 pt-4 dark:border-gray-600">
@@ -164,9 +202,7 @@ export default function AuthenticatedLayout({ header, children }) {
 
             {header && (
                 <header className="bg-white shadow dark:bg-gray-800">
-                    <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-                        {header}
-                    </div>
+                    
                 </header>
             )}
 
