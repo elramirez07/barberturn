@@ -3,15 +3,49 @@ namespace App\Http\Controllers;
 use App\Models\{
     Appointment,
     Service,
-    Customer
+    Customer,
+    Barber
 };
 
 
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+
 
 class AppointmentController extends Controller
 {
+    public function index()
+    {
+        $appointments = Appointment::with(['barber', 'service'])
+            ->orderBy('start_time')
+            ->get();
+
+        return Inertia::render('Appointments/Index', [
+            'appointments' => $appointments
+        ]);
+    }
+
+    public function create(){
+        return inertia::render('Appointments/Create',[
+            'barbers' => Barber::all(),
+            'services' => Service::all(),
+        ]);
+    }
+
     public function store(Request $request){
+
+        $data = $request->validate([
+            'barber_id' => 'required|exists:barbers,id',
+            'service_id' => 'required|exists:services,id',
+            'client_name' => 'required|string|max:255',
+            'client_phone' => 'nullable|string|max:20',
+            'date' => 'required|date',
+            'start_time' => 'required',
+        ]);
+
+
+
+
         $customer = Customer::firstOrCreate(
             ['phone' => $request->phone],
             [

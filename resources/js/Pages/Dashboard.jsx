@@ -2,7 +2,7 @@ import AppLayout from "@/Layouts/AppLayout";
 
 export default function Dashboard() {
     return (
-        <AppLayout>
+        <AppLayout title="Dashboard">
 
         <h1 className="text-2xl font-bold mb-6">Hoy 💈</h1>
 
